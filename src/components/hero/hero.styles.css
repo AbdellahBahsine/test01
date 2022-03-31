@@ -1,0 +1,45 @@
+.hero-component{
+    height: 100vh;
+    padding: 0 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+}
+
+.hero__image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../../images/hero.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.hero__image::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #328BC3;
+    opacity: 0.8;
+}
+
+.hero-component p{
+    font-size: 21px;
+    font-weight: 300;
+}
+
+.hero-component h1{
+    font-size: 80px;
+}
+
+.hero-component h1 span{
+    color: #73C0FC; 
+}
