@@ -10,15 +10,11 @@
     padding: 0 4%;
 }
 
-.logo{
+.header-component .logo{
     font-size: 28px;
     font-family: 'Boogaloo', cursive;
     text-decoration: none;
     color: #fff;
-}
-
-.logo span{
-    color: #E59C23;
 }
 
 .header-component nav a{
@@ -32,5 +28,5 @@
 }
 
 .header-component nav a:hover{
-    color: #73C0FC;
+    color: #E59C23;
 }
