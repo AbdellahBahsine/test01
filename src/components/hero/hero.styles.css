@@ -7,6 +7,29 @@
     color: #fff;
 }
 
+.hero-component p, .hero-component h1{
+    margin-left: -800px;
+    transition: margin-left 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+}
+
+.hero-component .showOne{
+    margin-left: 0px;
+    transition: margin-left 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    transition-delay: 0.6s;
+}
+
+.hero-component .showTwo{
+    margin-left: 0px;
+    transition: margin-left 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    transition-delay: 1.2s;
+}
+
+.hero-component .showThree{
+    margin-left: 0px;
+    transition: margin-left 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    transition-delay: 1.7s;
+}
+
 .hero__image{
     position: absolute;
     top: 0;

@@ -2,8 +2,15 @@ import './header.styles.css';
 import {Link} from "react-router-dom";
 
 const HeaderComponent = () => {
+
+    window.addEventListener('load', (event) => {
+        const header = document.getElementById('header');
+
+        header.classList.toggle('show')
+    });
+
     return (
-        <div className="header-component">
+        <header id="header" className="header-component">
             <Link to="/" className="logo">Le Traveler Guide</Link>
             
             <nav>
@@ -11,7 +18,7 @@ const HeaderComponent = () => {
                 <Link to="/articles">Articles</Link>
                 <Link to="/login">Login</Link>
             </nav>
-        </div>
+        </header>
     )
 }
 
