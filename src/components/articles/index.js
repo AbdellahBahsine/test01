@@ -1,8 +1,9 @@
-import './articles.styles.css'
+import './articles.styles.css';
 
 const ArticlesComponent = () => {
+
     return (
-        <section className="articles-component">
+        <section id="articles" className="articles-component">
             <div className="articles-component__grid">
                 <div className="articles-component__article">
                     <div className="articles-component__image">

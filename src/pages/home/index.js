@@ -6,12 +6,14 @@ import ArticlesComponent from '../../components/articles';
 import SidebarComponent from '../../components/sidebar';
 import FooterComponent from '../../components/footer';
 
+
 const HomePage = () => {
+
     return(
         <div className="home-page">
             <HeaderComponent />
             <HeroComponent />
-            <main>
+            <main>                
                 <ArticlesComponent />
                 <SidebarComponent />
             </main>
