@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import './home.styles.css';
 
 import HeaderComponent from '../../components/header';
@@ -8,6 +9,20 @@ import FooterComponent from '../../components/footer';
 
 
 const HomePage = () => {
+
+    useEffect(() => {
+    
+        const header = document.getElementById('header');
+        const textOne = document.getElementById('textOne');
+        const textTwo = document.getElementById('textTwo');
+        const textThree = document.getElementById('textThree');
+
+        textOne.classList.toggle('showOne');
+        textTwo.classList.toggle('showTwo');
+        textThree.classList.toggle('showThree');
+        header.classList.add('show')
+        
+      }, []);
 
     return(
         <div className="home-page">

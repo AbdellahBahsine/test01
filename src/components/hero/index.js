@@ -2,16 +2,6 @@ import './hero.styles.css';
 
 const HeroComponent = () => {
 
-    window.addEventListener('load', (event) => {
-        const textOne = document.getElementById('textOne');
-        const textTwo = document.getElementById('textTwo');
-        const textThree = document.getElementById('textThree');
-
-        textOne.classList.toggle('showOne');
-        textTwo.classList.toggle('showTwo');
-        textThree.classList.toggle('showThree');
-    });
-
     return (
         <section className="hero-component">
             <div className="hero__image"></div>

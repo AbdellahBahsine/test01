@@ -36,12 +36,13 @@
 }
 
 .login-page .username__container, .login-page .password__container{
-    width: 280px;
-    height: 38px;
+    width: 300px;
+    height: 40px;
     margin: 10px;
     display: flex;
     align-items: center;
     border: 1px solid #fff;
+    border-radius: 5px;
 }
 
 .login-page i{
@@ -80,13 +81,14 @@
 
 .login-page button{
     margin-top: 10px;
-    height: 38px;
-    width: 280px;
+    height: 40px;
+    width: 300px;
     outline: none;
     border: none;
     background-color: #fff;
     color: #25668e;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .login-page button:hover{
