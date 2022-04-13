@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\PostController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -21,4 +22,6 @@ Route::post('/login', [LoginController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/logout', [LoginController::class, 'logout']);
+
+    Route::get('/posts', [PostController::class, 'index']);
 });

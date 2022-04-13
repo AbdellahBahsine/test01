@@ -6,7 +6,8 @@ import HomePage from './pages/home';
 import LoginPage from './pages/login';
 import DashboardPage from './pages/dashboard';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLogout } from './features/user/userSlice';
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -14,10 +15,11 @@ import axios from 'axios';
 function App() {
 
   const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if(Cookies.get('authToken')){
-      
+    if(!Cookies.get('authToken')){
+      dispatch(setLogout())
     }
   }, [])
 
