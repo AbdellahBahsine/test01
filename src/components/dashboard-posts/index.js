@@ -1,22 +1,37 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './dashboard-posts.styles.css';
+
+import DashboardCreatePostComponent from '../dashboard-create-post';
 
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
 const DashboardPostsComponent = () => {
 
+    const [isOpen, setIsOpen] = useState(false);
+    const[posts, setPosts] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/posts', { headers: { 
             Accept: 'application/json',
-            Authorization: `Bearer ${Cookies.get('authToken')}` 
+            Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
-        .then(res => console.log(res))
+        .then(res => {
+            setPosts(res.data)
+            setLoading(false)
+        })
         .catch(err => console.log(err))
     }, [])
+
+    const handleClick = () => {
+        setIsOpen(!isOpen)
+    }
+
     return (
         <div className="dashboard-posts">
-            <button>Create New Post</button>
+            <button onClick={handleClick}>Create New Post</button>
+            <DashboardCreatePostComponent isOpen={isOpen} handleClick={handleClick} />
             <table>
                 <thead>
                     <tr>
@@ -27,12 +42,18 @@ const DashboardPostsComponent = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Paris</td>
-                        <td>04/12/2022</td>
-                        <td>Delete</td>
-                    </tr>
+                    {
+                        loading ? <tr><td align="center" colspan="4">Loading...</td></tr> : posts?.data.map(d => {
+                            return (
+                                <tr key={d.id}>
+                                    <td>{d.id}</td>
+                                    <td>{d.title}</td>
+                                    <td>{d.created_at}</td>
+                                    <td>Delete</td>
+                                </tr>
+                            )
+                        })
+                    }
                 </tbody>
             </table>
         </div>
