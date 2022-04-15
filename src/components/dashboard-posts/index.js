@@ -9,7 +9,7 @@ import axios from 'axios';
 const DashboardPostsComponent = () => {
 
     const [isOpen, setIsOpen] = useState(false);
-    const[posts, setPosts] = useState(null);
+    const [posts, setPosts] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -22,7 +22,7 @@ const DashboardPostsComponent = () => {
             setLoading(false)
         })
         .catch(err => console.log(err))
-    }, [])
+    }, [posts])
 
     const handleClick = () => {
         setIsOpen(!isOpen)
@@ -31,7 +31,7 @@ const DashboardPostsComponent = () => {
     return (
         <div className="dashboard-posts">
             <button onClick={handleClick}>Create New Post</button>
-            <DashboardCreatePostComponent isOpen={isOpen} handleClick={handleClick} />
+            <DashboardCreatePostComponent isOpen={isOpen} setIsOpen={setIsOpen} handleClick={handleClick} />
             <table>
                 <thead>
                     <tr>
@@ -43,7 +43,7 @@ const DashboardPostsComponent = () => {
                 </thead>
                 <tbody>
                     {
-                        loading ? <tr><td align="center" colspan="4">Loading...</td></tr> : posts?.data.map(d => {
+                        loading ? <tr><td align="center" colSpan="4">Loading...</td></tr> : posts?.data.map(d => {
                             return (
                                 <tr key={d.id}>
                                     <td>{d.id}</td>

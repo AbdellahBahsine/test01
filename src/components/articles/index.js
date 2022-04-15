@@ -1,45 +1,85 @@
+import {useEffect, useState} from 'react';
 import './articles.styles.css';
+
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const ArticlesComponent = () => {
 
-    return (
+    const [posts, setPosts] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(1);
+
+    useEffect(() => {
+        axios.get(`http://localhost:8000/api/posts/home?page=${page}`, { headers: { 
+            Accept: 'application/json',
+            Authorization: `Bearer ${Cookies.get('authToken')}`
+        } })
+        .then(res => {
+            setPosts(res.data)
+            setLoading(false)
+        })
+        .catch(err => console.log(err))
+    }, [page])
+
+    const nextPage = () => {
+        if(page >= posts.last_page){
+            return;
+        }
+        
+        setPage(page + 1)
+        setLoading(true)
+    }
+
+    const prevPage = () => {
+        if(page <= 1){
+            return;
+        }
+        
+        setPage(page - 1)
+        setLoading(true)
+    }
+
+    const selectedPage = (p) => {
+        if(page < 1 || page > posts.last_page || page === p){
+            return;
+        }
+
+        console.log(p)
+        setPage(p)
+        setLoading(true)
+    }
+
+    return ( 
         <section id="articles" className="articles-component">
-            <div className="articles-component__grid">
-                <div className="articles-component__article">
-                    <div className="articles-component__image">
-                        <img src="https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/1643724814-Marrakesh%20-%20The%20Red%20City.jpg" alt="article-image" />
+                {
+                    loading ? <div className="loader__container"><div class="loader"></div></div> : 
+                    <div className="articles-component__grid">
+                        {
+                        posts?.data.map(d => {
+                            return (
+                                <div className="articles-component__article" key={d.id}>
+                                    <div className="articles-component__image">
+                                        <img src={`https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/${d.image}`} alt={d.title} />
+                                    </div>
+                                    <div className="articles-component__content">
+                                        <h2>{d.title}</h2>
+                                        <span>{d.created_at}</span>
+                                        <p>{d.body.slice(0, 100)}</p>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                     </div>
+                }
 
-                    <div className="articles-component__content">
-                        <h2>Marrakesh - The Red City</h2>
-                        <span>01 Feb 2022</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec fermentum metus, at ultrices odio. Pellentesque vel tristique enim, volutpat eleifend mauris. Nam elementum lectus dolor, i...</p>
-                    </div>
-                </div>
-
-                <div className="articles-component__article">
-                    <div className="articles-component__image">
-                        <img src="https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/1643724814-Marrakesh%20-%20The%20Red%20City.jpg" alt="article-image" />
-                    </div>
-
-                    <div className="articles-component__content">
-                        <h2>Marrakesh - The Red City</h2>
-                        <span>01 Feb 2022</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec fermentum metus, at ultrices odio. Pellentesque vel tristique enim, volutpat eleifend mauris. Nam elementum lectus dolor, i...</p>
-                    </div>
-                </div>
-
-                <div className="articles-component__article">
-                    <div className="articles-component__image">
-                        <img src="https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/1643724814-Marrakesh%20-%20The%20Red%20City.jpg" alt="article-image" />
-                    </div>
-
-                    <div className="articles-component__content">
-                        <h2>Marrakesh - The Red City</h2>
-                        <span>01 Feb 2022</span>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec fermentum metus, at ultrices odio. Pellentesque vel tristique enim, volutpat eleifend mauris. Nam elementum lectus dolor, i...</p>
-                    </div>
-                </div>
+            <div className="pagination">
+                <button onClick={prevPage}><i className="fa fa-chevron-left"></i></button>
+                {[...Array(posts?.last_page)].map((x, i) =>
+                    <button onClick={() => selectedPage(i + 1)}>{i + 1}</button>
+                )}
+                <button onClick={nextPage}><i className="fa fa-chevron-right"></i></button>
             </div>
         </section>
     )

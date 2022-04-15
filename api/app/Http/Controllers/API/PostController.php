@@ -16,10 +16,17 @@ use Storage;
 class PostController extends Controller
 {
     public function index() {
+        $posts = Post::orderBy('created_at', 'asc')->paginate(10);
+        
+        return $posts;
+    }
+
+    public function posts() {
         $posts = Post::orderBy('created_at', 'desc')->paginate(3);
         
         return $posts;
     }
+
 
     public function store(Request $request)
     {

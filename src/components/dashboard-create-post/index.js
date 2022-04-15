@@ -4,7 +4,7 @@ import './dashboard-create-post.styles.css';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-const DashboardCreatePostComponent = ({isOpen, handleClick}) => {
+const DashboardCreatePostComponent = ({isOpen, setIsOpen, handleClick}) => {
 
     const [data, setData] = useState({title: '', body: '', image: null})
 
@@ -20,7 +20,10 @@ const DashboardCreatePostComponent = ({isOpen, handleClick}) => {
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`,
         } })
-        .then(res => console.log(res))
+        .then(res => {
+            setIsOpen(false)
+            setData({title: '', body: '', image: null})
+        })
         .catch(err => console.log(err))
     }
 
