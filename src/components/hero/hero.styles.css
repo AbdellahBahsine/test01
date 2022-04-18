@@ -7,27 +7,41 @@
     color: #fff;
 }
 
-.hero-component p, .hero-component h1{
+.hero-component .textOne{
+    animation-name: showText;
+    animation-duration: 0.6s;
+    animation-delay: 0.6s;
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    animation-fill-mode: forwards;
     margin-left: -800px;
-    transition: margin-left 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
 }
 
-.hero-component .showOne{
-    margin-left: 0px;
-    transition: margin-left 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-    transition-delay: 0.6s;
+.hero-component .textTwo{
+    animation-name: showText;
+    animation-duration: 0.6s;
+    animation-delay: 1.2s;
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    animation-fill-mode: forwards;
+    margin-left: -800px;
 }
 
-.hero-component .showTwo{
-    margin-left: 0px;
-    transition: margin-left 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-    transition-delay: 1.2s;
+.hero-component .textThree{
+    animation-name: showText;
+    animation-duration: 0.6s;
+    animation-delay: 1.8s;
+    animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+    animation-fill-mode: forwards;
+    margin-left: -800px;
 }
 
-.hero-component .showThree{
-    margin-left: 0px;
-    transition: margin-left 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
-    transition-delay: 1.7s;
+@keyframes showText{
+    0%{
+        margin-left: -800px;
+    }
+
+    100%{
+        margin-left: 0;
+    }
 }
 
 .hero__image{
