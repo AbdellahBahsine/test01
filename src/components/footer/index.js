@@ -4,22 +4,7 @@ import './footer.styles.css';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const FooterComponent = () => {
-
-    const [posts, setPosts] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        axios.get('http://localhost:8000/api/posts', { headers: { 
-            Accept: 'application/json',
-            Authorization: `Bearer ${Cookies.get('authToken')}`
-        } })
-        .then(res => {
-            setPosts(res.data)
-            setLoading(false)
-        })
-        .catch(err => console.log(err))
-    }, [posts])
+const FooterComponent = ({posts}) => {
 
     return (
         <footer className="footer-component">
