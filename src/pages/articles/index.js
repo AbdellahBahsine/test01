@@ -11,7 +11,6 @@ const ArticlesPage = () => {
 
     const [posts, setPosts] = useState(null);
     const [footerPosts, setFooterPosts] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [loadingArticles, setLoadingArticles] = useState(true);
     const [loadingFooter, setLoadingFooter] = useState(true);
     const [page, setPage] = useState(1);
@@ -23,7 +22,6 @@ const ArticlesPage = () => {
         } })
         .then(res => {
             setPosts(res.data)
-            setLoading(false)
             setLoadingArticles(false)
         })
         .catch(err => console.log(err))

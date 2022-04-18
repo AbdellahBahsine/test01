@@ -1,26 +1,7 @@
-import {useEffect, useState} from 'react';
 import './articles.styles.css';
 
-import axios from 'axios';
-import Cookies from 'js-cookie';
+const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, setPage}) => {
 
-const ArticlesComponent = () => {
-
-    const [posts, setPosts] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [page, setPage] = useState(1);
-
-    useEffect(() => {
-        axios.get(`http://localhost:8000/api/posts/home?page=${page}`, { headers: { 
-            Accept: 'application/json',
-            Authorization: `Bearer ${Cookies.get('authToken')}`
-        } })
-        .then(res => {
-            setPosts(res.data)
-            setLoading(false)
-        })
-        .catch(err => console.log(err))
-    }, [page])
 
     const nextPage = () => {
         if(page >= posts.last_page){
@@ -28,7 +9,7 @@ const ArticlesComponent = () => {
         }
         
         setPage(page + 1)
-        setLoading(true)
+        setLoadingArticles(true)
     }
 
     const prevPage = () => {
@@ -37,7 +18,7 @@ const ArticlesComponent = () => {
         }
         
         setPage(page - 1)
-        setLoading(true)
+        setLoadingArticles(true)
     }
 
     const selectedPage = (p) => {
@@ -46,13 +27,13 @@ const ArticlesComponent = () => {
         }
 
         setPage(p)
-        setLoading(true)
+        setLoadingArticles(true)
     }
 
     return ( 
         <section id="articles" className="articles-component">
                 {
-                    loading ? <div className="loader__container"><div class="loader"></div></div> : 
+                    loadingArticles ? <div className="loader__container"><div class="loader"></div></div> : 
                     <div className="articles-component__grid">
                         {
                             posts?.data.map(d => {
@@ -73,15 +54,14 @@ const ArticlesComponent = () => {
                     </div>
                 }
 
-            {
-                loading ? "" : <div className="pagination">
-                    <button onClick={prevPage}><i className="fa fa-chevron-left"></i></button>
-                    {[...Array(posts?.last_page)].map((x, i) =>
-                        <button onClick={() => selectedPage(i + 1)} className={ page === i + 1 ? "active" : ""}>{i + 1}</button>
-                    )}
-                    <button onClick={nextPage}><i className="fa fa-chevron-right"></i></button>
-                </div>
-            }
+            
+            <div className="pagination">
+                <button onClick={prevPage}><i className="fa fa-chevron-left"></i></button>
+                {[...Array(posts?.last_page)].map((x, i) =>
+                    <button onClick={() => selectedPage(i + 1)} className={ page === i + 1 ? "active" : ""}>{i + 1}</button>
+                )}
+                <button onClick={nextPage}><i className="fa fa-chevron-right"></i></button>
+            </div>
         </section>
     )
 }
