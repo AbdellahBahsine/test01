@@ -1,4 +1,9 @@
 .default-header-component{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
     height: 70px;
     padding: 0 4%;
     background-color: #328BC3;

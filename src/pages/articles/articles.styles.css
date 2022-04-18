@@ -1,0 +1,115 @@
+.articles-page{
+    position: relative;
+}
+
+.articles-page, main{
+    height: 100%;
+}
+
+.articles-page .articles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 110px 4% 0 4%;
+    height: 100%;
+}
+
+.articles-page .articles .articles-component__grid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+    grid-gap: 15px;
+}
+
+.articles-page .loader__container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.articles-page .loader {
+    border: 8px solid #d3d3d3;
+    border-top: 8px solid #73C0FC;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+  
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+.articles-page__article{
+    box-shadow: rgb(0 0 0 / 2%) 0px 1px 3px 0px, rgb(27 31 35 / 15%) 0px 0px 0px 1px;
+    transition: 0.6s;
+    color: #1F2531;
+    height: 360px;
+}
+
+.articles-page__article:hover{
+    transform: scale(1.01);
+    transition: transform 0.6s;
+}
+
+.articles-page__image{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.articles-page__image img{
+    width: 100%;
+    min-height: 200px;
+}
+
+.articles-page__content{
+    padding: 12px;
+}
+
+.articles-page__content span{
+    font-weight: 300;
+}
+
+.articles-page__content p{
+    margin: 12px 0;
+    font-weight: 300;
+    color: #d3d3d3;
+    word-break: break-all;
+}
+
+.articles-page .pagination{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.articles-page .pagination button{
+    height: 30px;
+    background-color: #E59C23;
+    color: #fff;
+    border: none;
+    outline: none;
+    margin-right: 8px;
+    padding: 6px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.articles-page .pagination button:last-child{
+    margin-right: 0;
+}
+
+.articles-page .pagination button.active{
+    border: 2px solid #E59C23;
+    background: none;
+    color: #E59C23;
+}
