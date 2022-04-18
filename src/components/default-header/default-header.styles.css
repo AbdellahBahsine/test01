@@ -1,0 +1,29 @@
+.default-header-component{
+    height: 70px;
+    padding: 0 4%;
+    background-color: #328BC3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.default-header-component .logo{
+    font-size: 28px;
+    font-family: 'Boogaloo', cursive;
+    text-decoration: none;
+    color: #fff;
+}
+
+.default-header-component nav a{
+    color: #fff;
+    margin-right: 50px;
+    text-decoration: none;
+}
+
+.default-header-component nav a:last-child{
+    margin-right: 0;
+}
+
+.default-header-component nav a:hover{
+    color: #E59C23;
+}

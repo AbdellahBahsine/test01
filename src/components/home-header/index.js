@@ -7,7 +7,7 @@ import { setLogout } from '../../features/user/userSlice';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-const HeaderComponent = () => {
+const HomeHeaderComponent = () => {
 
     const isLoggedIn = useSelector(state => state.user.isLoggedIn);
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const HeaderComponent = () => {
     }
 
     return (
-        <header id="header" className="header-component">
+        <header id="header" className="home-header-component">
             <Link to="/" className="logo">Le Traveler Guide</Link>
             
             <nav>
@@ -41,4 +41,4 @@ const HeaderComponent = () => {
     )
 }
 
-export default HeaderComponent;
+export default HomeHeaderComponent;

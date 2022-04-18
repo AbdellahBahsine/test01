@@ -1,4 +1,4 @@
-.header-component{
+.home-header-component{
     position: absolute;
     top: -80px;
     left: 0;
@@ -10,28 +10,28 @@
     padding: 0 4%;
 }
 
-.header-component.show{
+.home-header-component.show{
     top: 0px;
     transition: top 0.6s cubic-bezier(0.6, 0.04, 0.98, 0.335);
 }
 
-.header-component .logo{
+.home-header-component .logo{
     font-size: 28px;
     font-family: 'Boogaloo', cursive;
     text-decoration: none;
     color: #fff;
 }
 
-.header-component nav a{
+.home-header-component nav a{
     color: #fff;
     margin-right: 50px;
     text-decoration: none;
 }
 
-.header-component nav a:last-child{
+.home-header-component nav a:last-child{
     margin-right: 0;
 }
 
-.header-component nav a:hover{
+.home-header-component nav a:hover{
     color: #E59C23;
 }

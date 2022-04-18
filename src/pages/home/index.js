@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import './home.styles.css';
 
-import HeaderComponent from '../../components/header';
+import HomeHeaderComponent from '../../components/home-header';
 import HeroComponent from '../../components/hero';
 import ArticlesComponent from '../../components/articles';
 import SidebarComponent from '../../components/sidebar';
@@ -26,7 +26,7 @@ const HomePage = () => {
 
     return(
         <div className="home-page">
-            <HeaderComponent />
+            <HomeHeaderComponent />
             <HeroComponent />
             <main>                
                 <ArticlesComponent />

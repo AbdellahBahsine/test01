@@ -1,11 +1,12 @@
 import './articles.styles.css';
 
-import HeaderComponent from '../../components/header';
+import DefaultHeaderComponent from '../../components/default-header';
 
 const ArticlesPage = () => {
     return (
         <div className="articles-page">
-            <HeaderComponent />
+            <DefaultHeaderComponent />
+            
         </div>
     )
 }
