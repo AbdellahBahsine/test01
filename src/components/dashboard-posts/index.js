@@ -28,6 +28,13 @@ const DashboardPostsComponent = () => {
         setIsOpen(!isOpen)
     }
 
+    const handleRemove = id => {
+        axios.delete('http://localhost:8000/api/post/delete/' + id, { headers: { 
+            Accept: 'application/json',
+            Authorization: `Bearer ${Cookies.get('authToken')}`
+        } })
+    }
+
     return (
         <div className="dashboard-posts">
             <button onClick={handleClick}>Create New Post</button>
@@ -35,10 +42,10 @@ const DashboardPostsComponent = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th style={{textAlign: "center"}}>ID</th>
                         <th>Title</th>
                         <th>Created At</th>
-                        <th>Delete</th>
+                        <th style={{textAlign: "center"}}>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,10 +53,10 @@ const DashboardPostsComponent = () => {
                         loading ? <tr><td align="center" colSpan="4">Loading...</td></tr> : posts?.data.map(d => {
                             return (
                                 <tr key={d.id}>
-                                    <td>{d.id}</td>
+                                    <td style={{textAlign: "center"}}>{d.id}</td>
                                     <td>{d.title}</td>
                                     <td>{d.created_at}</td>
-                                    <td>Delete</td>
+                                    <td style={{textAlign: "center"}}><i className="fa fa-trash" style={{ color: "#FF0000", cursor: "pointer" }} onClick={() => handleRemove(d.id)}></i></td>
                                 </tr>
                             )
                         })

@@ -63,4 +63,13 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->save();
     }
+
+    public function delete($id) {
+        $postToDelete = Post::find($id);
+
+        $path = 'public/images/posts/' . $postToDelete->image;
+        $postToDelete->delete();
+        Storage::disk('s3')->delete($path);
+    }
+
 }

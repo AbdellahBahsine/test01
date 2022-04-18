@@ -45,7 +45,6 @@ const ArticlesComponent = () => {
             return;
         }
 
-        console.log(p)
         setPage(p)
         setLoading(true)
     }

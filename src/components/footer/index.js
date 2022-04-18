@@ -1,6 +1,26 @@
+import {useState, useEffect} from 'react';
 import './footer.styles.css';
 
+import axios from 'axios';
+import Cookies from 'js-cookie';
+
 const FooterComponent = () => {
+
+    const [posts, setPosts] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/posts', { headers: { 
+            Accept: 'application/json',
+            Authorization: `Bearer ${Cookies.get('authToken')}`
+        } })
+        .then(res => {
+            setPosts(res.data)
+            setLoading(false)
+        })
+        .catch(err => console.log(err))
+    }, [posts])
+
     return (
         <footer className="footer-component">
             <div className="footer-component__top">
@@ -12,27 +32,22 @@ const FooterComponent = () => {
                 <div className="footer-component__latest-posts">
                     <h2>Latest Posts</h2>
 
-                    <div className="post">
-                        <div className="post__image">
-                            <img src="https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/1643724814-Marrakesh%20-%20The%20Red%20City.jpg" alt="Marrakesh" />
-                        </div>
+                    {
+                        posts?.data.slice(0,2).map(p => {
+                            return(
+                                <div className="post">
+                                    <div className="post__image">
+                                        <img src={`https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/${p.image}`} alt={p.title} />
+                                    </div>
 
-                        <div className="post__content">
-                            <h3>Marrakesh</h3>
-                            <span>01 Feb 2022, by Test123</span>
-                        </div>
-                    </div>
-
-                    <div className="post">
-                        <div className="post__image">
-                            <img src="https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/1643724814-Marrakesh%20-%20The%20Red%20City.jpg" alt="Marrakesh" />
-                        </div>
-
-                        <div className="post__content">
-                            <h3>Marrakesh</h3>
-                            <span>01 Feb 2022, by Test123</span>
-                        </div>
-                    </div>
+                                    <div className="post__content">
+                                        <h3>{p.title}</h3>
+                                        <span>{p.created_at}</span>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
                 </div>
 

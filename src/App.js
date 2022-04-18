@@ -3,6 +3,7 @@ import './App.css';
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import HomePage from './pages/home';
+import ArticlesPage from './pages/articles';
 import LoginPage from './pages/login';
 import DashboardPage from './pages/dashboard';
 
@@ -27,6 +28,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/articles' element={<ArticlesPage />} />
         {/* <Route path='*' element={ <NotFoundPage /> } /> */}
         {/* <Route path='/dashboard/*' element={!isLoggedIn ? <Navigate to="/" /> : <DashboardPage />} /> */}
         <Route exact path='/login' element={isLoggedIn ? <Navigate to="/dashboard" /> : <LoginPage />} />
