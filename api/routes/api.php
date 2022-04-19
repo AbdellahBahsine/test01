@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -20,12 +21,15 @@ use Illuminate\Support\Facades\Auth;
 
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/posts/home', [PostController::class, 'posts']);
+Route::get('/post/{id}', [PostController::class, 'getPost']);
+Route::get('/posts', [PostController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/logout', [LoginController::class, 'logout']);
 
-    Route::get('/posts', [PostController::class, 'index']);
     Route::post('/posts/create', [PostController::class, 'store']);
 
     Route::delete('/post/delete/{id}', [PostController::class, 'delete']);
+
+    Route::post('/post/{id}/comment', [CommentController::class, 'addComment']);
 });

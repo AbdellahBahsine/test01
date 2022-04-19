@@ -45,7 +45,7 @@ const HomePage = () => {
     return(
         <div className="home-page">
             {
-                loadingFooter ? <div className="loader__container"><div class="loader"></div></div> :
+                loadingFooter ? <div className="loader__container"><div className="loader"></div></div> :
                 <>
                     <HomeHeaderComponent />
                     <HeroComponent />

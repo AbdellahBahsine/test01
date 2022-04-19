@@ -1,6 +1,6 @@
 import './default-header.styles.css';
 
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { setLogout } from '../../features/user/userSlice';
@@ -8,10 +8,12 @@ import { setLogout } from '../../features/user/userSlice';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-const DefaultHeaderComponent = () => {
+const DefaultHeaderComponent = ({id}) => {
 
     const isLoggedIn = useSelector(state => state.user.isLoggedIn);
     const dispatch = useDispatch();
+
+    const location = useLocation();
 
     const handleLogout = () => {
         axios.delete('http://localhost:8000/api/logout', { headers: { 
@@ -31,6 +33,9 @@ const DefaultHeaderComponent = () => {
             
             <nav>
                 <Link to="/">Home</Link>
+                {
+                    location.pathname == "/article/" + id && <Link to="/articles">Articles</Link>
+                }
                 {
                     isLoggedIn
                     ? <Link onClick={handleLogout} to="/">Logout</Link>

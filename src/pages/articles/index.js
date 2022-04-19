@@ -1,6 +1,8 @@
 import {useEffect, useState} from 'react';
 import './articles.styles.css';
 
+import { useNavigate } from "react-router-dom";
+
 import DefaultHeaderComponent from '../../components/default-header';
 import FooterComponent from '../../components/footer';
 
@@ -14,6 +16,8 @@ const ArticlesPage = () => {
     const [loadingArticles, setLoadingArticles] = useState(true);
     const [loadingFooter, setLoadingFooter] = useState(true);
     const [page, setPage] = useState(1);
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/posts?page=${page}`, { headers: { 
@@ -66,10 +70,14 @@ const ArticlesPage = () => {
         setLoadingArticles(true)
     }
 
+    const handleClick = id => {
+        navigate('/article/' + id);
+    }
+
     return (
         <div className="articles-page">
             {
-                loadingFooter ? <div className="loader__container"><div class="loader"></div></div> :
+                loadingFooter ? <div className="loader__container"><div className="loader"></div></div> :
                 <>      
                     <DefaultHeaderComponent />
                     <main>
@@ -77,9 +85,9 @@ const ArticlesPage = () => {
                                 
                             <div className="articles-component__grid">
                                 {
-                                    loadingArticles ? <div className="loader__container"><div class="loader"></div></div> : posts?.data.map(d => {
+                                    loadingArticles ? <div className="loader__container"><div className="loader"></div></div> : posts?.data.map(d => {
                                         return (
-                                            <div className="articles-page__article" key={d.id}>
+                                            <div className="articles-page__article" key={d.id} onClick={() => handleClick(d.id)}>
                                                 <div className="articles-page__image">
                                                     <img src={`https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/${d.image}`} alt={d.title} />
                                                 </div>
@@ -87,7 +95,7 @@ const ArticlesPage = () => {
                                                     <h2>{d.title}</h2>
                                                     <span>{d.created_at}</span>
                                                     <p>{d.body.slice(0, 100)}</p>
-                                                </div>
+                                                </div> 
                                             </div>
                                         )
                                     })

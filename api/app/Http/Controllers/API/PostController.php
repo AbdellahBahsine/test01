@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller as Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 use Image;
 use File;
 use Auth;
@@ -70,6 +71,16 @@ class PostController extends Controller
         $path = 'public/images/posts/' . $postToDelete->image;
         $postToDelete->delete();
         Storage::disk('s3')->delete($path);
+    }
+
+    function getPost($id)
+    {
+        $user = Post::find($id)->user;
+        $post = Post::find($id);
+        $comments = Post::find($id)->comments()->get();
+        return response()
+            ->json(['user' => $user, 'post' => $post, 'comments' => $comments]);
+            
     }
 
 }
