@@ -67,7 +67,7 @@ const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, se
                 posts?.data.length ?
                 <div className="pagination">
                     <button onClick={prevPage}><i className="fa fa-chevron-left"></i></button>
-                    {[...Array(posts?.last_page)].map((x, i) =>
+                    {[...Array(posts?.last_page)].slice(Math.max([...Array(posts?.last_page)].length - 5, 0)).map((x, i) =>
                         <button onClick={() => selectedPage(i + 1)} className={ page === i + 1 ? "active" : ""}>{i + 1}</button>
                     )}
                     <button onClick={nextPage}><i className="fa fa-chevron-right"></i></button>
