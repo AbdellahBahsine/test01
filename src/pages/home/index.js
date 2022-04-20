@@ -17,9 +17,10 @@ const HomePage = () => {
     const [loadingArticles, setLoadingArticles] = useState(true);
     const [loadingFooter, setLoadingFooter] = useState(true);
     const [page, setPage] = useState(1);
+    const [input, setInput] = useState('');
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/posts/home?page=${page}`, { headers: { 
+        axios.post(`http://localhost:8000/api/posts/home?page=${page}`, {search: input}, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
@@ -51,7 +52,7 @@ const HomePage = () => {
                     <HeroComponent />
                     <main>                
                         <ArticlesComponent posts={posts} loadingArticles={loadingArticles} setLoadingArticles={setLoadingArticles} page={page} setPage={setPage} />
-                        <SidebarComponent />
+                        <SidebarComponent setPosts={setPosts} input={input} setInput={setInput} />
                     </main>
                     <FooterComponent posts={footerPosts} />
                 </>

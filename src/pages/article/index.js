@@ -9,7 +9,7 @@ import FooterComponent from '../../components/footer';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import Disqus from "disqus-react";
+import {DiscussionEmbed} from "disqus-react"
 
 const ArticlePage = () => {
 
@@ -22,9 +22,9 @@ const ArticlePage = () => {
 
     const disqusShortname = "le-traveler-guide-herokuapp-com"
     const disqusConfig = {
-      url: "http://localhost:3000",
-      identifier: id,
-      title: data?.post.title
+        url: "http://localhost:3000/article",
+        identifier: data?.post.id + "",
+        title: data?.post.title + ""
     }
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const ArticlePage = () => {
             setLoading(false)
         })
         .catch(err => console.log(err))
-    }, [])
+    }, [id])
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/posts', { headers: { 
@@ -66,7 +66,7 @@ const ArticlePage = () => {
                                 <p className="article-page__body">{data?.post.body}</p>
                             </div>
 
-                            <Disqus.DiscussionEmbed
+                            <DiscussionEmbed
                                 shortname={disqusShortname}
                                 config={disqusConfig}
                             />

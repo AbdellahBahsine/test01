@@ -1,7 +1,8 @@
 import './articles.styles.css';
 
-const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, setPage}) => {
+import { useNavigate } from "react-router-dom";
 
+const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, setPage}) => {
 
     const nextPage = () => {
         if(page >= posts.last_page){
@@ -30,15 +31,22 @@ const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, se
         setLoadingArticles(true)
     }
 
+    const navigate = useNavigate();
+
+    const handleClick = id => {
+        navigate('/article/' + id);
+    }
+
     return ( 
         <section id="articles" className="articles-component">
                 {
                     loadingArticles ? <div className="loader__container"><div class="loader"></div></div> : 
+                    posts?.data.length ?
                     <div className="articles-component__grid">
                         {
                             posts?.data.map(d => {
                                 return (
-                                    <div className="articles-component__article" key={d.id}>
+                                    <div className="articles-component__article" key={d.id} onClick={() => handleClick(d.id)}>
                                         <div className="articles-component__image">
                                             <img src={`https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/${d.image}`} alt={d.title} />
                                         </div>
@@ -52,16 +60,20 @@ const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, se
                             })
                         }
                     </div>
+                    : <p className="not-found">Not found!</p>
                 }
 
-            
-            <div className="pagination">
-                <button onClick={prevPage}><i className="fa fa-chevron-left"></i></button>
-                {[...Array(posts?.last_page)].map((x, i) =>
-                    <button onClick={() => selectedPage(i + 1)} className={ page === i + 1 ? "active" : ""}>{i + 1}</button>
-                )}
-                <button onClick={nextPage}><i className="fa fa-chevron-right"></i></button>
-            </div>
+            {
+                posts?.data.length ?
+                <div className="pagination">
+                    <button onClick={prevPage}><i className="fa fa-chevron-left"></i></button>
+                    {[...Array(posts?.last_page)].map((x, i) =>
+                        <button onClick={() => selectedPage(i + 1)} className={ page === i + 1 ? "active" : ""}>{i + 1}</button>
+                    )}
+                    <button onClick={nextPage}><i className="fa fa-chevron-right"></i></button>
+                </div>
+                : ''
+            }
         </section>
     )
 }

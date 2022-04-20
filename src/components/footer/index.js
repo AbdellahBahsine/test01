@@ -1,10 +1,14 @@
-import {useState, useEffect} from 'react';
 import './footer.styles.css';
 
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 
 const FooterComponent = ({posts}) => {
+
+    const navigate = useNavigate();
+
+    const handleClick = id => {
+        navigate('/article/' + id);
+    }
 
     return (
         <footer className="footer-component">
@@ -20,7 +24,7 @@ const FooterComponent = ({posts}) => {
                     {
                         posts?.data.slice(0,2).map(p => {
                             return(
-                                <div className="post">
+                                <div className="post" key={p.id} onClick={() => handleClick(p.id)}>
                                     <div className="post__image">
                                         <img src={`https://letravelerguide.s3.eu-west-3.amazonaws.com/public/images/posts/${p.image}`} alt={p.title} />
                                     </div>

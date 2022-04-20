@@ -1,11 +1,28 @@
+import {useState} from 'react';
 import './sidebar.styles.css';
 
-const SidebarComponent = () => {
+import axios from 'axios';
+import Cookies from 'js-cookie';
+
+const SidebarComponent = ({setPosts, input, setInput}) => {
+
+    const handleClick = () => {
+        axios.post('http://localhost:8000/api/posts/home', {search: input}, { headers: { 
+            Accept: 'application/json',
+            Authorization: `Bearer ${Cookies.get('authToken')}`
+        } })
+        .then(res => {
+            console.log(res)
+            setPosts(res.data)
+        })
+        .catch(err => console.log(err))
+    }
+    
     return (
         <section className="sidebar-component">
             <div className="search">
-                <input type="text" placeholder='Search post...' />
-                <button>Search</button>
+                <input type="text" placeholder='Search post...' value={input} onChange={e => setInput(e.target.value)} />
+                <button onClick={handleClick}>Search</button>
             </div>
 
             <div className="line"></div>

@@ -17,7 +17,7 @@ const ArticlesPage = () => {
     const [loadingFooter, setLoadingFooter] = useState(true);
     const [page, setPage] = useState(1);
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`http://localhost:8000/api/posts?page=${page}`, { headers: { 

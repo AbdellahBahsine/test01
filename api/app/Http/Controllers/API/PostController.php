@@ -22,9 +22,12 @@ class PostController extends Controller
         return $posts;
     }
 
-    public function posts() {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(3);
+    public function posts(Request $request)
+    {
+        $inputV = $request->search;
         
+        $posts = Post::where('title', 'ilike', '%'.trim($inputV).'%')->orderBy('created_at', 'desc')->paginate(3);
+
         return $posts;
     }
 
@@ -81,6 +84,15 @@ class PostController extends Controller
         return response()
             ->json(['user' => $user, 'post' => $post, 'comments' => $comments]);
             
+    }
+
+    public function filterPosts(Request $request)
+    {
+        $inputV = $request->search;
+        
+        $posts = Post::where(strtolower('title'), 'like', '%'.strtolower($inputV).'%')->orderBy('created_at', 'desc')->paginate(3);
+
+        return $posts;
     }
 
 }

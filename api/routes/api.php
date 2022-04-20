@@ -20,9 +20,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/posts/home', [PostController::class, 'posts']);
+Route::post('/posts/home', [PostController::class, 'posts']);
 Route::get('/post/{id}', [PostController::class, 'getPost']);
 Route::get('/posts', [PostController::class, 'index']);
+Route::post('/posts/filter', [PostController::class, 'filterPosts']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/logout', [LoginController::class, 'logout']);
