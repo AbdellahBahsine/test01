@@ -19,6 +19,10 @@
     color: #fff;
 }
 
+.default-header-component .menu{
+    display: flex;
+}
+
 .default-header-component nav a{
     color: #fff;
     margin-right: 50px;
@@ -31,4 +35,34 @@
 
 .default-header-component nav a:hover{
     color: #E59C23;
+}
+
+.default-header-component .login-links{
+    position: relative;
+}
+
+.default-header-component .login-links i{
+    cursor: pointer;
+    color: #fff;
+}
+
+.default-header-component .login-links__inner{
+    position: absolute;
+    top: 50px;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    background-color: #328BC3;
+    border-radius: 5px;
+    padding: 6px 0;
+}
+
+.default-header-component .login-links__inner.open{
+    display: flex;
+}
+
+.default-header-component .login-links__inner a{
+    margin: 6px 0;
+    padding: 0 16px;
+    user-select: none;
 }

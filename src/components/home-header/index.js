@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import './header.styles.css';
 import {Link} from "react-router-dom";
 
@@ -8,6 +9,8 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 
 const HomeHeaderComponent = () => {
+
+    const [open, setOpen] = useState(false);
 
     const isLoggedIn = useSelector(state => state.user.isLoggedIn);
     const dispatch = useDispatch();
@@ -24,16 +27,27 @@ const HomeHeaderComponent = () => {
         .catch(err => console.log(err))
     }
 
+    const handleClick = () => {
+        setOpen(!open)
+    }
+
     return (
         <header id="header" className="home-header-component">
             <Link to="/" className="logo">Le Traveler Guide</Link>
             
-            <nav>
+            <nav className="menu">
                 <Link to="/">Home</Link>
                 <Link to="/articles">Articles</Link> 
                 {
                     isLoggedIn
-                    ? <Link onClick={handleLogout} to="/">Logout</Link>
+                    ? 
+                        <div className="login-links">
+                            <i class="fa fa-chevron-down" onClick={handleClick}></i>
+                            <div className={open ? "login-links__inner open" : "login-links__inner"}>
+                                <Link to="/dashboard">Dashboard</Link>
+                                <Link onClick={handleLogout} to="/">Logout</Link>
+                            </div>
+                        </div>
                     : <Link to="/login">Login</Link>
                 }
             </nav>
