@@ -9,7 +9,8 @@ import FooterComponent from '../../components/footer';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import {DiscussionEmbed} from "disqus-react"
+import {DiscussionEmbed} from "disqus-react";
+import moment from 'moment';
 
 const ArticlePage = () => {
 
@@ -61,7 +62,7 @@ const ArticlePage = () => {
                             </div>
                             <div className="article-page__text">
                                 <h2 className="article-page__title">{data?.post.title}</h2>
-                                <p className="article-page__subtitle">{data?.post.created_at}, {data?.user.name}</p>
+                                <p className="article-page__subtitle">{moment(data?.post.created_at).format("MMMM Do YYYY")}, {data?.user.name}</p>
         
                                 <p className="article-page__body">{data?.post.body}</p>
                             </div>

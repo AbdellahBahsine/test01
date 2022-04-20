@@ -9,6 +9,8 @@ import FooterComponent from '../../components/footer';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
+import moment from 'moment';
+
 const ArticlesPage = () => {
 
     const [posts, setPosts] = useState(null);
@@ -93,7 +95,7 @@ const ArticlesPage = () => {
                                                 </div>
                                                 <div className="articles-page__content">
                                                     <h2>{d.title}</h2>
-                                                    <span>{d.created_at}</span>
+                                                    <span>{moment(d.created_at).format("MMMM Do YYYY")}</span>
                                                     <p>{d.body.slice(0, 100)}</p>
                                                 </div> 
                                             </div>

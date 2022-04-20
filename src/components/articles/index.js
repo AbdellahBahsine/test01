@@ -2,6 +2,8 @@ import './articles.styles.css';
 
 import { useNavigate } from "react-router-dom";
 
+import moment from 'moment';
+
 const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, setPage}) => {
 
     const nextPage = () => {
@@ -52,7 +54,7 @@ const ArticlesComponent = ({posts, loadingArticles, setLoadingArticles, page, se
                                         </div>
                                         <div className="articles-component__content">
                                             <h2>{d.title}</h2>
-                                            <span>{d.created_at}</span>
+                                            <span>{moment(d.created_at).format("MMMM Do YYYY, h:mm:ss a")}</span>
                                             <p>{d.body.slice(0, 100)}</p>
                                         </div>
                                     </div>

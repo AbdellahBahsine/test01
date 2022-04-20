@@ -6,6 +6,8 @@ import DashboardCreatePostComponent from '../dashboard-create-post';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
+import moment from 'moment';
+
 const DashboardPostsComponent = () => {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +58,7 @@ const DashboardPostsComponent = () => {
                                 <tr key={d.id}>
                                     <td style={{textAlign: "center"}}>{d.id}</td>
                                     <td>{d.title}</td>
-                                    <td>{d.created_at}</td>
+                                    <td>{moment(d.created_at).format("MMMM Do YYYY, h:mm:ss a")}</td>
                                     <td style={{textAlign: "center"}}><i className="fa fa-trash" style={{ color: "#FF0000", cursor: "pointer" }} onClick={() => handleRemove(d.id)}></i></td>
                                 </tr>
                             )

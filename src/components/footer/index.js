@@ -2,6 +2,8 @@ import './footer.styles.css';
 
 import { useNavigate } from "react-router-dom";
 
+import moment from 'moment';
+
 const FooterComponent = ({posts}) => {
 
     const navigate = useNavigate();
@@ -31,7 +33,7 @@ const FooterComponent = ({posts}) => {
 
                                     <div className="post__content">
                                         <h3>{p.title}</h3>
-                                        <span>{p.created_at}</span>
+                                        <span>{moment(p.created_at).format("MMMM Do YYYY")}</span>
                                     </div>
                                 </div>
                             )
