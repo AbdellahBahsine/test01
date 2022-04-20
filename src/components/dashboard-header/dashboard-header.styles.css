@@ -8,6 +8,8 @@
 }
 
 .dashboard-header-component .logo{
+    position: relative;
+    z-index: 6;
     font-size: 28px;
     font-family: 'Boogaloo', cursive;
     text-decoration: none;
@@ -18,17 +20,17 @@
     display: flex;
 }
 
-.dashboard-header-component nav a{
+.dashboard-header-component .menu a{
     color: #fff;
     margin-right: 50px;
     text-decoration: none;
 }
 
-.dashboard-header-component nav a:last-child{
+.dashboard-header-component .menu a:last-child{
     margin-right: 0;
 }
 
-.dashboard-header-component nav a:hover{
+.dashboard-header-component .menu a:hover{
     color: #E59C23;
 }
 
@@ -61,3 +63,68 @@
     padding: 0 16px;
     user-select: none;
 }
+
+.dashboard-header-component .bars{
+    position: relative;
+    z-index: 5;
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.dashboard-header-component .mobile-menu{
+    display: none;
+    z-index: 3;
+}
+  
+.dashboard-header-component .mobile-menu__nav.show{
+    display: flex;
+}
+  
+.dashboard-header-component .mobile-menu__nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: #25668e;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
+.dashboard-header-component  .mobile-menu__nav__item{
+    margin-bottom: 30px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #fff;
+}
+  
+.dashboard-header-component  .mobile-menu__nav__item:last-child{
+    margin-bottom: 0;
+}
+
+.dashboard-header-component  .mobile-menu__nav__item:hover{
+    color: #E59C23;
+}
+
+@media screen and (max-width: 925px){
+    .dashboard-header-component .menu{
+      display: none;
+    }
+    
+    .dashboard-header-component .mobile-menu{
+      display: block;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  
+    .dashboard-header-component .bars{
+      display: block;
+    }
+}
+  
+

@@ -17,7 +17,7 @@ use Storage;
 class PostController extends Controller
 {
     public function index() {
-        $posts = Post::orderBy('created_at', 'asc')->paginate(10);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         
         return $posts;
     }
@@ -41,9 +41,11 @@ class PostController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('http://localhost:3000/dashboard/')
-                ->withInput()
-                ->withErrors($validator);
+            return response([
+                'Error' => $validator->errors()->all(),
+                'Image' => $request->image,
+                'Title' => $request->title
+            ],422);
         }
 
         $newImageName = time() . '-' . $request->title . '.' . $request->image->extension();
@@ -55,6 +57,8 @@ class PostController extends Controller
         $img->resize(500, null, function ($constraint) {
             $constraint->aspectRatio();
         });
+
+        dd($img);
 
         $img->stream();
 
@@ -82,7 +86,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $comments = Post::find($id)->comments()->get();
         return response()
-            ->json(['user' => $user, 'post' => $post, 'comments' => $comments]);
+            ->json(['user' => $user, 'post' => $post]);
             
     }
 

@@ -125,3 +125,20 @@
 .articles-component .not-found{
     margin: auto;
 }
+
+@media screen and (max-width: 810px){
+    .articles-component .loader__container{
+        height: auto;
+    }
+
+    .articles-component .articles-component__grid{
+      display: flex;
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .articles-component{
+      width: 100%;
+      padding-right: 0;
+    }
+  }

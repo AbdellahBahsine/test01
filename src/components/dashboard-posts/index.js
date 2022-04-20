@@ -41,7 +41,7 @@ const DashboardPostsComponent = () => {
     return (
         <div className="dashboard-posts">
             <button onClick={handleClick}>Create New Post</button>
-            <DashboardCreatePostComponent isOpen={isOpen} setIsOpen={setIsOpen} handleClick={handleClick} />
+            <DashboardCreatePostComponent isOpen={isOpen} setIsOpen={setIsOpen} handleClick={handleClick} setLoading={setLoading} />
             <table>
                 <thead>
                     <tr>

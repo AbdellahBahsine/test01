@@ -13,6 +13,8 @@
 }
 
 .default-header-component .logo{
+    position: relative;
+    z-index: 6;
     font-size: 28px;
     font-family: 'Boogaloo', cursive;
     text-decoration: none;
@@ -23,17 +25,17 @@
     display: flex;
 }
 
-.default-header-component nav a{
+.default-header-component .menu a{
     color: #fff;
     margin-right: 50px;
     text-decoration: none;
 }
 
-.default-header-component nav a:last-child{
+.default-header-component .menu a:last-child{
     margin-right: 0;
 }
 
-.default-header-component nav a:hover{
+.default-header-component .menu a:hover{
     color: #E59C23;
 }
 
@@ -66,3 +68,83 @@
     padding: 0 16px;
     user-select: none;
 }
+
+.default-header-component .bars{
+    position: relative;
+    z-index: 5;
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.default-header-component .mobile-menu{
+    display: none;
+    z-index: 3;
+}
+  
+.default-header-component .mobile-menu__nav.show{
+    display: flex;
+}
+  
+.default-header-component .mobile-menu__nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: #25668e;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+  
+.default-header-component  .mobile-menu__nav__item{
+    margin-bottom: 30px;
+    font-size: 30px;
+    text-decoration: none;
+    color: #fff;
+}
+  
+.default-header-component  .mobile-menu__nav__item:last-child{
+    margin-bottom: 0;
+}
+
+.default-header-component  .mobile-menu__nav__item:hover{
+    color: #E59C23;
+}
+  
+.default-header-component  .mobile-menu__nav__dashboard{
+    background: #E59C23;
+    padding: 10px 14px;
+    border-radius: 5px;
+}
+  
+.default-header-component  .mobile-menu__nav__dashboard:hover{
+    background: #b3791d;
+}
+  
+.default-header-component  .mobile-menu__nav__dashboard .mobile-menu__nav__item:hover{
+    color: #FCFBFA;
+}
+  
+
+@media screen and (max-width: 925px){
+    .default-header-component .menu{
+      display: none;
+    }
+    
+    .default-header-component .mobile-menu{
+      display: block;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  
+    .default-header-component .bars{
+      display: block;
+    }
+}
+  
+

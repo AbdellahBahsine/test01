@@ -80,3 +80,21 @@
 .hero-component h1 span{
     color: #E59C23; 
 }
+
+@media screen and (max-width: 925px){
+    .hero-component .textTwo{
+      font-size: 70px;
+    }
+}
+
+@media screen and (max-width: 746px){  
+    .hero-component .textOne, .hero-component .textThree{
+      font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 650px){  
+    .hero-component .textTwo{
+      font-size: 55px;
+    }
+}

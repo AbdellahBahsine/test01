@@ -20,7 +20,7 @@ const HomePage = () => {
     const [input, setInput] = useState('');
 
     useEffect(() => {
-        axios.post(`http://localhost:8000/api/posts/home?page=${page}`, {search: input}, { headers: { 
+        axios.post(`http://localhost:8000/api/posts/home?page=${page}`, {search: input}, { headers: {  
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
@@ -52,7 +52,7 @@ const HomePage = () => {
                     <HeroComponent />
                     <main>                
                         <ArticlesComponent posts={posts} loadingArticles={loadingArticles} setLoadingArticles={setLoadingArticles} page={page} setPage={setPage} />
-                        <SidebarComponent setPosts={setPosts} input={input} setInput={setInput} />
+                        <SidebarComponent setPosts={setPosts} input={input} setInput={setInput} page={page} setLoadingArticles={setLoadingArticles} />
                     </main>
                     <FooterComponent posts={footerPosts} />
                 </>

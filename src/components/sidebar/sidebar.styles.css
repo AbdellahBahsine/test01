@@ -50,3 +50,23 @@
     color: #1F2531;
     font-size: 15px;
 }
+
+@media screen and (max-width: 810px){  
+    .sidebar-component{
+      width: 100%;
+      padding-left: 0;
+      margin-bottom: 20px;
+    }
+  
+    .sidebar-component .about, .sidebar-component .line{
+      display: none;
+    }
+  
+    .sidebar{
+      margin-bottom: 20px;
+    }
+  
+    .sidebar-component .search input{
+      width: 100%;
+    }
+  }

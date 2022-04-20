@@ -2,7 +2,7 @@
     position: relative;
 }
 
-.articles-page, main{
+.articles-page, .articles-page main{
     min-height: 100%;
 }
 
@@ -20,6 +20,7 @@
     display: grid;
     grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
     grid-gap: 15px;
+    height: auto;
 }
 
 .articles-page .loader__container{
@@ -112,4 +113,11 @@
     border: 2px solid #E59C23;
     background: none;
     color: #E59C23;
+}
+
+@media screen and (max-width: 700px){
+    .articles-page .articles .articles-component__grid{
+        display: flex;
+        flex-direction: column;
+    }
 }

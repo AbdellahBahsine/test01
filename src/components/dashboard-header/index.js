@@ -12,6 +12,7 @@ import axios from 'axios';
 const DashboardHeaderComponent = () => {
 
     const [open, setOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -31,6 +32,10 @@ const DashboardHeaderComponent = () => {
         setOpen(!open)
     }
 
+    const handleMenu = () => {
+        setIsMobile(!isMobile)
+    }
+
     return (
         <header className="dashboard-header-component">
             <Link to="/" className="logo">Le Traveler Guide</Link>
@@ -39,13 +44,22 @@ const DashboardHeaderComponent = () => {
                 <Link to="/home">Home</Link>
                 <Link to="/articles">Articles</Link>
                 <div className="login-links">
-                    <i class="fa fa-chevron-down" onClick={handleClick}></i>
+                    <i className="fa fa-chevron-down" onClick={handleClick}></i>
                     <div className={open ? "login-links__inner open" : "login-links__inner"}>
                         <Link to="/dashboard">Dashboard</Link>
                         <Link onClick={handleLogout} to="/">Logout</Link>
                     </div>
                 </div>
             </nav>
+
+            <div class="mobile-menu">
+                <div className="bars"><i className="fas fa-bars" onClick={handleMenu}></i></div>
+                <nav className={isMobile ? "mobile-menu__nav show" : "mobile-menu__nav"}>
+                    <Link className="mobile-menu__nav__item" to="/">Home</Link>
+                    <Link className="mobile-menu__nav__item" to="/articles">Articles</Link> 
+                    <Link className="mobile-menu__nav__item" onClick={handleLogout} to="/">Logout</Link>
+                </nav>
+            </div>
         </header>
     )
 }

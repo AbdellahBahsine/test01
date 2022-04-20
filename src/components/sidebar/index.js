@@ -4,18 +4,19 @@ import './sidebar.styles.css';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const SidebarComponent = ({setPosts, input, setInput}) => {
+const SidebarComponent = ({setPosts, input, setInput, page, setLoadingArticles}) => {
 
     const handleClick = () => {
-        axios.post('http://localhost:8000/api/posts/home', {search: input}, { headers: { 
+        setLoadingArticles(true)
+        axios.post(`http://localhost:8000/api/posts/home?page=${page}`, {search: input}, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
         } })
         .then(res => {
-            console.log(res)
             setPosts(res.data)
+            setLoadingArticles(false)
         })
-        .catch(err => console.log(err))
+        .catch(err => setLoadingArticles(false))
     }
     
     return (
