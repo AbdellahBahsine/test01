@@ -16,8 +16,6 @@ const LoginPage = () => {
     const currentUser = useSelector(state => state.user.currentUser)
     const dispatch = useDispatch()
 
-    console.log(currentUser)
-
     const handleChange = e => {
         const {name, value} = e.target
         setCredentials({...credentials, [name]: value})

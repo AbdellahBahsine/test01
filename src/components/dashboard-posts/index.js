@@ -22,13 +22,14 @@ const DashboardPostsComponent = () => {
             setLoading(false)
         })
         .catch(err => console.log(err))
-    }, [posts])
+    }, [loading])
 
     const handleClick = () => {
         setIsOpen(!isOpen)
     }
 
     const handleRemove = id => {
+        setLoading(true);
         axios.delete('http://localhost:8000/api/post/delete/' + id, { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}`
