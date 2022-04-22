@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useEffect} from 'react';
 import './App.css';
 import { Routes, Route, Navigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ function App() {
     if(!Cookies.get('authToken')){
       dispatch(setLogout())
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="App">

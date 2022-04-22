@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import './sidebar.styles.css';
 
 import axios from 'axios';

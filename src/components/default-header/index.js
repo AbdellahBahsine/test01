@@ -46,7 +46,7 @@ const DefaultHeaderComponent = ({id}) => {
             <nav className="menu">
                 <Link to="/">Home</Link>
                 {
-                    location.pathname == "/article/" + id && <Link to="/articles">Articles</Link>
+                    location.pathname === "/article/" + id && <Link to="/articles">Articles</Link>
                 }
                 {
                     isLoggedIn
@@ -67,7 +67,7 @@ const DefaultHeaderComponent = ({id}) => {
                 <nav className={isMobile ? "mobile-menu__nav show" : "mobile-menu__nav"}>
                     <Link className="mobile-menu__nav__item" to="/">Home</Link>
                     {
-                        location.pathname == "/article/" + id && <Link className="mobile-menu__nav__item" to="/articles">Articles</Link> 
+                        location.pathname === "/article/" + id && <Link className="mobile-menu__nav__item" to="/articles">Articles</Link> 
                     }
                     {
                     isLoggedIn

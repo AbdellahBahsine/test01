@@ -15,7 +15,6 @@ import moment from 'moment';
 const ArticlePage = () => {
 
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [footerPosts, setFooterPosts] = useState(null);
     const [loadingFooter, setLoadingFooter] = useState(true);
 
@@ -32,7 +31,6 @@ const ArticlePage = () => {
         axios.get('http://localhost:8000/api/post/' + id)
         .then(res => {
             setData(res.data)
-            setLoading(false)
         })
         .catch(err => console.log(err))
     }, [id])

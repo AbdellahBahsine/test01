@@ -4,7 +4,7 @@ import './login.styles.css';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setLoggedUser } from '../../features/user/userSlice';
 
 const LoginPage = () => {
@@ -13,8 +13,7 @@ const LoginPage = () => {
     
     const {name, password} = credentials
 
-    const currentUser = useSelector(state => state.user.currentUser)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const handleChange = e => {
         const {name, value} = e.target

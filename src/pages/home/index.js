@@ -29,7 +29,7 @@ const HomePage = () => {
             setLoadingArticles(false)
         })
         .catch(err => console.log(err))
-    }, [page])
+    }, [page]) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/posts', { headers: { 
