@@ -24,7 +24,7 @@ const LoginPage = () => {
     const handleSubmit = e => {
         e.preventDefault();
 
-        axios.post('http://localhost:8000/api/login', credentials)
+        axios.post('https://api-le-traveler-guide.herokuapp.com/api/login', credentials)
         .then(res => {
             dispatch(setLoggedUser(res.data.data.user))
             Cookies.set('authToken', res.data.data.token);
