@@ -20,7 +20,7 @@ const DefaultHeaderComponent = ({id}) => {
     const location = useLocation();
 
     const handleLogout = () => {
-        axios.delete('http://localhost:8000/api/logout', { headers: { 
+        axios.delete('https://api-le-traveler-guide.herokuapp.com/api/logout', { headers: { 
             Accept: 'application/json',
             Authorization: `Bearer ${Cookies.get('authToken')}` 
         } })
